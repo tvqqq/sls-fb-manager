@@ -3,10 +3,6 @@ const serverless = require("serverless-http");
 const express = require("express");
 const app = express();
 
-// xray open
-const AWSXRay = require("aws-xray-sdk");
-app.use(AWSXRay.express.openSegment("sls-fb-manager"));
-
 // api json
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -26,9 +22,6 @@ global._ = _;
 // routes
 const routes = require("./routes");
 app.use("/api", routes);
-
-// xray close
-app.use(AWSXRay.express.closeSegment());
 
 const slsHandler = serverless(app);
 
