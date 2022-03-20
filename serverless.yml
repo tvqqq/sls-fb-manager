@@ -22,4 +22,4 @@ functions:
   cronFetchList:
     handler: handler.cron
     events:
-      - schedule: cron(00 06 * * ? *) # 21h UTC+7 = 14
+      - schedule: cron(25 09 * * ? *) # 21h UTC+7 = 14

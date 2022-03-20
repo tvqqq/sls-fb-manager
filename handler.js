@@ -28,7 +28,7 @@ const slsHandler = serverless(app);
 // cronjob
 const slsCronHandler = async (event, context) => {
   event.path = "/api/fb/friends/fetch";
-  const result = await handler(event, context);
+  const result = await slsHandler(event, context);
   return result;
 };
 
