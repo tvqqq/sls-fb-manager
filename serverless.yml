@@ -1,0 +1,21 @@
+org: tvqqq
+app: sls-fb-manager
+service: sls-fb-manager
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-southeast-1
+  timeout: 900
+
+functions:
+  api:
+    handler: handler.serverless
+    events:
+      - httpApi: "*"
+
+  cronFetchList:
+    handler: handler.cron
+    events:
+      - schedule: cron(00 14 * * ? *) # 21h UTC+7
