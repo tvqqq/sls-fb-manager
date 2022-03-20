@@ -9,7 +9,7 @@ provider:
   region: ap-southeast-1
   timeout: 30
   environment:
-    FB_ACCESS_TOKEN: ${param:FB_ACCESS_TOKEN}
+    CONFIG_FAT_ID: ${param:CONFIG_FAT_ID}
     MONGODB_URL: ${param:MONGODB_URL}
     SLACK_WEBHOOK_URL: ${param:SLACK_WEBHOOK_URL}
 
