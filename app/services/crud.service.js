@@ -3,6 +3,10 @@ class CRUDService {
     this.model = model;
   }
 
+  getModel() {
+    return this.model;
+  }
+
   /**
    * @see: https://mongoosejs.com/docs/tutorials/findoneandupdate.html#upsert
    */
