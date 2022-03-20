@@ -15,5 +15,8 @@
     "mongoose": "^6.2.7",
     "node-fetch": "2",
     "serverless-http": "^2.7.0"
+  },
+  "devDependencies": {
+    "serverless-layers": "^2.5.4-beta.1"
   }
 }
