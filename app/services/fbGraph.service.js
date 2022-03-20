@@ -22,6 +22,7 @@ class FbGraphService {
   };
 
   fetchUpdateFriends = async () => {
+    await this.slackService.sendMessage("*TEST cronjob*"); // TODO:
     const curl = await this.callFbGraph(
       "me",
       "friends",
