@@ -1,10 +1,9 @@
-const FbFriend = require("../models/fbFriend.model");
 const { FbFriendService } = require("../services/fbFriend.service");
 const { FbGraphService } = require("../services/fbGraph.service");
 
 class FbController {
   constructor() {
-    this.fbFriendService = new FbFriendService(FbFriend);
+    this.fbFriendService = new FbFriendService();
     this.fbGraphService = new FbGraphService();
   }
 

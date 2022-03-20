@@ -1,13 +1,18 @@
 const fetch = require("node-fetch");
 const { SlackService } = require("../services/slack.service");
+const { ConfigService } = require("../services/config.service");
 
 class FbGraphService {
   constructor() {
     this.slackService = new SlackService();
+    this.configService = new ConfigService();
   }
 
   callFbGraph = async (node, edges = "", fields = "") => {
-    const fbAccessToken = process.env.FB_ACCESS_TOKEN;
+    let fbAccessToken = await this.configService
+      .getModel()
+      .findById(process.env.CONFIG_FAT_ID);
+    fbAccessToken = fbAccessToken.value;
     const FB_GRAPH_URL = "https://graph.facebook.com/v6.0/";
     const response = await fetch(
       FB_GRAPH_URL +
@@ -22,7 +27,6 @@ class FbGraphService {
   };
 
   fetchUpdateFriends = async () => {
-    await this.slackService.sendMessage("*TEST cronjob*"); // TODO:
     const curl = await this.callFbGraph(
       "me",
       "friends",

@@ -1,9 +1,8 @@
-const Config = require("../models/config.model");
 const { ConfigService } = require("../services/config.service");
 
 class ConfigController {
   constructor() {
-    this.configService = new ConfigService(Config);
+    this.configService = new ConfigService();
   }
 
   getFat = async (req, res, next) => {

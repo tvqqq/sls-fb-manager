@@ -1,8 +1,9 @@
 const { CRUDService } = require("./crud.service");
+const Config = require("../models/config.model");
 
 class ConfigService extends CRUDService {
-  constructor(model) {
-    super(model);
+  constructor() {
+    super(Config);
   }
 }
 

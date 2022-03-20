@@ -1,10 +1,11 @@
 const { CRUDService } = require("./crud.service");
 const { FbGraphService } = require("../services/fbGraph.service");
 const { SlackService } = require("../services/slack.service");
+const FbFriend = require("../models/fbFriend.model");
 
 class FbFriendService extends CRUDService {
-  constructor(model) {
-    super(model);
+  constructor() {
+    super(FbFriend);
     this.fbGraphService = new FbGraphService();
     this.slackService = new SlackService();
   }
