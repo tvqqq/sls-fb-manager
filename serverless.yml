@@ -23,12 +23,3 @@ functions:
     handler: handler.cron
     events:
       - schedule: cron(00 14 * * ? *) # 21h UTC+7 = 14
-
-plugins:
-  - serverless-layers
-
-custom:
-  serverless-layers:
-    # applies for all lambdas
-    - common:
-        dependenciesPath: ./package.json
