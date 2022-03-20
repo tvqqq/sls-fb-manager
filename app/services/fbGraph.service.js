@@ -1,6 +1,11 @@
 const fetch = require("node-fetch");
+const { SlackService } = require("../services/slack.service");
 
 class FbGraphService {
+  constructor() {
+    this.slackService = new SlackService();
+  }
+
   callFbGraph = async (node, edges = "", fields = "") => {
     const fbAccessToken = process.env.FB_ACCESS_TOKEN;
     const FB_GRAPH_URL = "https://graph.facebook.com/v6.0/";

@@ -11,6 +11,7 @@ class FbFriendService extends CRUDService {
 
   getFriendList = async ({ page, search }) => {
     const limit = 20;
+    const pageInt = _.isUndefined(page) ? 0 : parseInt(page);
     let filter = {
       unfDate: null,
     };
@@ -27,8 +28,7 @@ class FbFriendService extends CRUDService {
       };
       filter = { ...filter, ...searchFilter };
     }
-    const skip =
-      _.isUndefined(page) || parseInt(page) === 0 ? 0 : page - 1 * limit;
+    const skip = pageInt === 0 ? 0 : (pageInt - 1) * limit;
     const result = await this.paginator(filter, skip, limit);
     return result;
   };
@@ -38,7 +38,7 @@ class FbFriendService extends CRUDService {
   };
 
   checkUnfriend = async (newFriendList) => {
-    const currentFriendList = await this.getFriendList();
+    const currentFriendList = await this.find({ unfDate: null });
     const currentPluckId = _.map(currentFriendList, "fbId");
     const newPluckId = _.map(newFriendList, "fbId");
     const diff = _.difference(currentPluckId, newPluckId);
@@ -58,7 +58,7 @@ class FbFriendService extends CRUDService {
     if (dataFbUnfriend.length > 0) {
       const textUnf = dataFbUnfriend.join("\n>");
       await this.slackService.sendMessage(
-        "😩 There are some unfriends today\n" + textUnf
+        "😩 There are some unfriends today\n>" + textUnf
       );
     }
   };
