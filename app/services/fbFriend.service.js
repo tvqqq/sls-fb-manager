@@ -30,12 +30,12 @@ class FbFriendService extends CRUDService {
       filter = { ...filter, ...searchFilter };
     }
     const skip = pageInt === 0 ? 0 : (pageInt - 1) * limit;
-    const result = await this.paginator(filter, skip, limit);
+    let result = await this.paginator(filter, skip, limit, "-createdAt");
     return result;
   };
 
   getUnfriendList = async () => {
-    return await this.find({ unfDate: { $ne: null } });
+    return await this.find({ unfDate: { $ne: null } }, "-unfDate");
   };
 
   checkUnfriend = async (newFriendList) => {

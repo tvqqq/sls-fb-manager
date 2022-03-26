@@ -17,16 +17,16 @@ class CRUDService {
     });
   }
 
-  async find(filter) {
-    return await this.model.find(filter).exec();
+  async find(filter, sort) {
+    return await this.model.find(filter).sort(sort).exec();
   }
 
   async update(data, filter) {
     return await this.model.updateMany(filter, data);
   }
 
-  async paginator(filter, skip, limit) {
-    return await this.model.find(filter).skip(skip).limit(limit).exec();
+  async paginator(filter, skip, limit, sort) {
+    return await this.model.find(filter).sort(sort).skip(skip).limit(limit);
   }
 }
 
