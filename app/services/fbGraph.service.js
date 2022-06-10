@@ -13,7 +13,8 @@ class FbGraphService {
       .getModel()
       .findById(process.env.CONFIG_FAT_ID);
     fbAccessToken = fbAccessToken.value;
-    const FB_GRAPH_URL = "https://graph.facebook.com/v6.0/";
+    // @see https://developers.facebook.com/docs/graph-api/changelog/version14.0
+    const FB_GRAPH_URL = "https://graph.facebook.com/v14.0/";
     const response = await fetch(
       FB_GRAPH_URL +
         node +
