@@ -13,6 +13,10 @@ class FbGraphService {
       .getModel()
       .findById(process.env.CONFIG_FAT_ID);
     fbAccessToken = fbAccessToken.value;
+    let fbCookie = await this.configService
+      .getModel()
+      .findById(process.env.CONFIG_FC_ID);
+    fbCookie = fbCookie.value;
     // @see https://developers.facebook.com/docs/graph-api/changelog/version14.0
     const FB_GRAPH_URL = "https://graph.facebook.com/v14.0/";
     const response = await fetch(
@@ -22,7 +26,12 @@ class FbGraphService {
         edges +
         "?access_token=" +
         fbAccessToken +
-        fields
+        fields,
+      {
+        headers: {
+          Cookie: fbCookie,
+        },
+      }
     );
     return await response.json();
   };

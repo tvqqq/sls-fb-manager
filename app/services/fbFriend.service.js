@@ -51,7 +51,7 @@ class FbFriendService extends CRUDService {
           unfId
         );
         if (!_.isEmpty(checkUnfOrDeactivated.id)) {
-          await this.update({ unfDate: new Date() }, { fbId: unfId });
+          await this.updateOne({ unfDate: new Date() }, { fbId: unfId });
           dataFbUnfriend.push(unfId);
         }
       })
