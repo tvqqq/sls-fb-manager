@@ -12,6 +12,7 @@ provider:
     CONFIG_FAT_ID: ${param:CONFIG_FAT_ID}
     MONGODB_URL: ${param:MONGODB_URL}
     SLACK_WEBHOOK_URL: ${param:SLACK_WEBHOOK_URL}
+    CONFIG_FC_ID: ${param:CONFIG_FC_ID}
 
 functions:
   api:
